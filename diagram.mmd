@@ -1,53 +1,50 @@
 graph TB
     %% User Input Layer
-    User[👤 User] --> VoiceInput[🎤 Voice Input]
-    User --> TextInput[⌨️ Text Input]
+    User[User] --> VoiceInput[Voice Input]
+    User --> TextInput[Text Input]
     
     %% Input Processing
-    VoiceInput --> VoiceProcessor[🎙️ Voice Processor<br/>- Speech-to-Text<br/>- Voice Corrections<br/>- Query Normalization]
-    TextInput --> QueryParser[🔍 Query Parser<br/>- Natural Language Processing<br/>- Intent Recognition<br/>- Filter Extraction]
+    VoiceInput --> VoiceProcessor[Voice Processor<br/>Speech-to-Text<br/>Query Normalization]
+    TextInput --> QueryParser[Query Parser<br/>Natural Language Processing<br/>Intent Recognition<br/>Filter Extraction]
     
     %% API Layer
-    VoiceProcessor --> FastAPI[🚀 FastAPI Server<br/>- /search endpoint<br/>- /click endpoint<br/>- /debug/last-query<br/>- /analytics endpoints]
+    VoiceProcessor --> FastAPI[FastAPI Server<br/>RESTful API<br/>Request Validation<br/>Response Serialization]
     QueryParser --> FastAPI
     
     %% Core Processing
-    FastAPI --> MetadataMapper[🗂️ Metadata Mapper<br/>- Genre Normalization<br/>- Actor Name Mapping<br/>- Filter Standardization]
+    FastAPI --> MetadataMapper[Metadata Mapper<br/>Genre Normalization<br/>Actor Name Mapping<br/>Filter Standardization]
     
     %% A/B Testing & Recommendations
-    MetadataMapper --> ABTesting{🧪 A/B Testing<br/>Session-based Assignment}
-    ABTesting -->|Variant A| PopularityStrategy[📊 Popularity Strategy<br/>- Rule-based Boosts<br/>- Genre Matching<br/>- Actor Matching<br/>- Runtime Preferences]
-    ABTesting -->|Variant B| SimilarityStrategy[🔍 TF-IDF Strategy<br/>- Cosine Similarity<br/>- Content-based Filtering<br/>- Overview Analysis]
+    MetadataMapper --> ABTesting{A/B Testing<br/>Session-based Assignment}
+    ABTesting -->|Variant A| PopularityStrategy[Popularity Strategy<br/>Rule-based Boosts<br/>Genre Matching<br/>Actor Matching<br/>Runtime Preferences]
+    ABTesting -->|Variant B| SimilarityStrategy[TF-IDF Strategy<br/>Cosine Similarity<br/>Content-based Filtering<br/>Overview Analysis]
     
     %% Data Layer
-    PopularityStrategy --> MovieCatalog[🎬 Movie Catalog<br/>- 30+ Movies<br/>- Genres, Cast, Overview<br/>- Runtime, Ratings<br/>- Popularity Scores]
+    PopularityStrategy --> MovieCatalog[Movie Catalog<br/>30+ Movies<br/>Genres, Cast, Overview<br/>Runtime, Ratings<br/>Popularity Scores]
     SimilarityStrategy --> MovieCatalog
     
     %% Response Generation
-    PopularityStrategy --> ResponseGenerator[📋 Response Generator<br/>- JSON Serialization<br/>- X-Variant Header<br/>- X-Request-Id Header<br/>- Debug Information]
+    PopularityStrategy --> ResponseGenerator[Response Generator<br/>JSON Serialization<br/>Header Management<br/>Error Handling]
     SimilarityStrategy --> ResponseGenerator
     
     %% Event Logging
-    ResponseGenerator --> EventLogger[📝 Event Logger<br/>- Impression Tracking<br/>- Click Tracking<br/>- Session Management<br/>- Performance Metrics]
+    ResponseGenerator --> EventLogger[Event Logger<br/>Impression Tracking<br/>Click Tracking<br/>Session Management<br/>Performance Metrics]
     
     %% Storage Layer
-    EventLogger --> SQLiteDB[(🗄️ SQLite Database<br/>- Event Storage<br/>- Session Tracking<br/>- Performance Data)]
-    EventLogger --> CSVLogs[(📄 CSV Logs<br/>- Event Backup<br/>- Data Export<br/>- Debugging)]
+    EventLogger --> SQLiteDB[(SQLite Database<br/>Event Storage<br/>Session Tracking<br/>Performance Data)]
+    EventLogger --> CSVLogs[(CSV Logs<br/>Event Backup<br/>Data Export<br/>Debugging)]
     
     %% Analytics Dashboard
-    SQLiteDB --> StreamlitDashboard[📊 Streamlit Dashboard<br/>- Real-time Analytics<br/>- A/B Testing Results<br/>- CTR Visualization<br/>- Session Analysis]
+    SQLiteDB --> StreamlitDashboard[Analytics Dashboard<br/>Real-time Analytics<br/>A/B Testing Results<br/>CTR Visualization<br/>Session Analysis]
     CSVLogs --> StreamlitDashboard
     
-    %% Debug & Monitoring
-    FastAPI --> DebugEndpoint[🐛 Debug Endpoint<br/>- Last Query Info<br/>- Parsed Filters<br/>- Variant Assignment<br/>- Processing Time]
-    
     %% External Integrations (Future)
-    EventLogger -.->|Future| Kibana[📈 Kibana<br/>- Log Aggregation<br/>- Real-time Monitoring<br/>- Alerting]
-    EventLogger -.->|Future| Splunk[🔍 Splunk<br/>- Enterprise Logging<br/>- Advanced Analytics<br/>- Security Monitoring]
+    EventLogger -.->|Future| Kibana[Kibana<br/>Log Aggregation<br/>Real-time Monitoring<br/>Alerting]
+    EventLogger -.->|Future| Splunk[Splunk<br/>Enterprise Logging<br/>Advanced Analytics<br/>Security Monitoring]
     
     %% AWS Cloud (Future)
-    FastAPI -.->|Future| LoadBalancer[⚖️ AWS Load Balancer<br/>- Traffic Distribution<br/>- Health Checks<br/>- SSL Termination]
-    LoadBalancer -.->|Future| AutoScaling[📈 Auto Scaling Group<br/>- Dynamic Scaling<br/>- Instance Management<br/>- Cost Optimization]
+    FastAPI -.->|Future| LoadBalancer[AWS Load Balancer<br/>Traffic Distribution<br/>Health Checks<br/>SSL Termination]
+    LoadBalancer -.->|Future| AutoScaling[Auto Scaling Group<br/>Dynamic Scaling<br/>Instance Management<br/>Cost Optimization]
     
     %% Styling
     classDef userLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -58,7 +55,7 @@ graph TB
     classDef futureLayer fill:#f5f5f5,stroke:#616161,stroke-width:1px,stroke-dasharray: 5 5
     
     class User,VoiceInput,TextInput userLayer
-    class FastAPI,DebugEndpoint apiLayer
+    class FastAPI apiLayer
     class VoiceProcessor,QueryParser,MetadataMapper,ABTesting,PopularityStrategy,SimilarityStrategy,ResponseGenerator,EventLogger processingLayer
     class MovieCatalog,SQLiteDB,CSVLogs dataLayer
     class StreamlitDashboard analyticsLayer
