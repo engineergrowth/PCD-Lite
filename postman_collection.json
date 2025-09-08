@@ -1,0 +1,406 @@
+{
+	"info": {
+		"_postman_id": "pcd-lite-collection",
+		"name": "PCD-Lite API Collection",
+		"description": "Postman collection for PCD-Lite Personalized Content Discovery API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search - Comedy Movies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$randomUUID}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"find comedy movies\",\n  \"query_type\": \"text\",\n  \"session_id\": \"{{$randomUUID}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/search",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search - Tom Hanks Movies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$randomUUID}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"show me movies with Tom Hanks\",\n  \"query_type\": \"text\",\n  \"session_id\": \"{{$randomUUID}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/search",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search - Short Action Movies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$randomUUID}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"find action movies shorter than 120 minutes\",\n  \"query_type\": \"text\",\n  \"session_id\": \"{{$randomUUID}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/search",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search - Voice Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$randomUUID}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"find funny movies with robin williams\",\n  \"query_type\": \"voice\",\n  \"session_id\": \"{{$randomUUID}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/search",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search - Complex Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$randomUUID}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"recommend romantic drama movies from the 1990s with good ratings\",\n  \"query_type\": \"text\",\n  \"session_id\": \"{{$randomUUID}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/search",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Track Click",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$randomUUID}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"request_id\": \"{{$randomUUID}}\",\n  \"session_id\": \"{{$randomUUID}}\",\n  \"movie_id\": 1,\n  \"position\": 1,\n  \"variant\": \"A\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/click",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"click"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Debug Last Query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/debug/last-query",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"debug",
+						"last-query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Analytics - Last 7 Days",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/analytics?days=7",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"analytics"
+					],
+					"query": [
+						{
+							"key": "days",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Variant Performance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/analytics/variants?days=7",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"analytics",
+						"variants"
+					],
+					"query": [
+						{
+							"key": "days",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Catalog",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/catalog?limit=10",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"catalog"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Voice Suggestions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/voice/suggestions?partial_query=comedy",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"voice",
+						"suggestions"
+					],
+					"query": [
+						{
+							"key": "partial_query",
+							"value": "comedy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Session Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/session/{{session_id}}/events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"session",
+						"{{session_id}}",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fault Injection Test",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$randomUUID}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"test error handling\",\n  \"query_type\": \"text\",\n  \"session_id\": \"{{$randomUUID}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/search?fail=1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "fail",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "session_id",
+			"value": "demo-session-123",
+			"type": "string"
+		}
+	]
+}
