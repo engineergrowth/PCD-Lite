@@ -400,7 +400,7 @@ LOG_FILE=logs/app.log
 
 This project is created for interview demonstration purposes.
 
-6. **Highlight Debugging** - Show troubleshooting capabilities
+
 
 ## 📞 Contact
 
